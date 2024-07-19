@@ -1,3 +1,4 @@
+********************************************************* HTML PART *********************************************************************
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -52,7 +53,7 @@
 
 
 
-******************************************************** CSS PART **********************************************************************
+******************************************************** CSS PART ********************************************************************
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 *{
@@ -114,4 +115,39 @@ button{
 .operator{
     color: #6dee0a;
 }
+
+
+
+
+
+
+************************************************************ JAVA SCRIPT PART  ***************************************************************************
+let input = document.getElementById('inputBox');
+let buttons = document.querySelectorAll('button');
+
+let string = "";
+let arr = Array.from(buttons);
+
+arr.forEach(button => {
+    button.addEventListener('click', (e) => {
+        if (e.target.innerHTML == '=') {
+            try {
+                string = eval(string);
+                input.value = string;
+            } catch (error) {
+                input.value = "Error";
+            }
+        } else if (e.target.innerHTML == 'AC') {
+            string = "";
+            input.value = string;
+        } else if (e.target.innerHTML == 'DEL') {
+            string = string.substring(0, string.length - 1);
+            input.value = string;
+        } else {
+            string += e.target.innerHTML;
+            input.value = string;
+        }
+    });
+});
+
 
